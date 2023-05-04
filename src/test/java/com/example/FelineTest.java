@@ -1,7 +1,6 @@
 package com.example;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -14,34 +13,31 @@ import java.util.List;
 public class FelineTest {
 
     @Mock
-    Feline felineMock;
+    Animal animalMock;
 
     @Test
     public void eatMeatTest() throws Exception {
         Feline feline = new Feline();
-        Mockito.when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(felineMock.eatMeat(), feline.eatMeat());
+        Mockito.when(animalMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(animalMock.getFood("Хищник"), feline.eatMeat());
     }
 
     @Test
     public void getFamilyTest() {
         Feline feline = new Feline();
-        Mockito.when(felineMock.getFamily()).thenReturn("Кошачьи");
-        Assert.assertEquals(felineMock.getFamily(), feline.getFamily());
+        Mockito.when(animalMock.getFamily()).thenReturn("Кошачьи");
+        Assert.assertEquals(animalMock.getFamily(), feline.getFamily());
     }
 
     @Test
     public void getKittensTest() {
         Feline feline = new Feline();
-        Mockito.when(felineMock.getKittens()).thenReturn(1);
-        Assert.assertEquals(felineMock.getKittens(), feline.getKittens());
+        Assert.assertEquals(1, feline.getKittens());
     }
 
     @Test
     public void testGetKittens() {
         Feline feline = new Feline();
-        int kittenCount = Mockito.anyInt();
-        Mockito.when(felineMock.getKittens(kittenCount)).thenReturn(kittenCount);
-        Assert.assertEquals(felineMock.getKittens(kittenCount), feline.getKittens(kittenCount));
+        Assert.assertEquals(5, feline.getKittens(5));
     }
 }
